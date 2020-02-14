@@ -3,52 +3,90 @@
 
 #include <iostream>
 #include "SDL.h"
+#include "time.h"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-    
+
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
         return 1;
-    
+
     SDL_DisplayMode dm;
     SDL_GetDesktopDisplayMode(0, &dm);
     int screen_width = dm.w;
     int screen_height = dm.h;
 
     Uint32 flags = SDL_WINDOW_MAXIMIZED | SDL_WINDOW_MINIMIZED;
-    
 
-
-    SDL_Window* window = SDL_CreateWindow("Samuel Smith, 16631340", ((screen_width/2)-400), ((screen_height / 2) - 300), 800, 600, SDL_WINDOW_MAXIMIZED);
+    SDL_Window* window = SDL_CreateWindow("Samuel Smith, 16631340", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_MAXIMIZED);
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 20, 255);
+    SDL_SetRenderDrawColor(renderer, 100, 0, 0, 255);
 
     //Clear everything on the window -- paint over with last known colour
     SDL_RenderClear(renderer);
 
-    SDL_Rect r; 
-    r.x = 30; 
-    r.y = 30; 
-    r.w = 50; 
-    r.h = 50; 
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-    SDL_RenderDrawRect(renderer, &r);
-    
-    SDL_RenderClear(renderer);
+    int width;
+    int height;
+    SDL_GetWindowSize(window, &width, &height);
 
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE); 
-    SDL_RenderDrawLine(renderer, 0, 0, (screen_width), (screen_height));
+    int x, y;
+    x = ((width / 2));
+    y = ((height / 2));
+    
+    //Rectangle
+   /* SDL_Rect r;
+    r.x = x -50;
+    r.y = y -50;
+    r.w = 100;
+    r.h = 100;
+
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+    SDL_RenderDrawRect(renderer, &r);*/
+
+     //triangle stuff
+    /*SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_RenderDrawLine(renderer, x-50, y +50, x+50, y-50);
+    SDL_RenderDrawLine(renderer, x-50, y+50, x, y + 50);
+    SDL_RenderDrawLine(renderer, x+50, y-50, x, y + 50);*/
+    
+
+   
+
+    //SDL_RenderClear(renderer);
+
+    //draw line from one corner to other
+   // SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+   // SDL_RenderDrawLine(renderer, 0, 0, width, height);
+    srand(time(NULL));
+
+    int num = rand() % 1000;
+    printf("Number of lines: %i \n", num);
+
+    for (int i = 0; i < num; i++)
+    {
+        int r = rand() % 255;
+        int g = rand() % 255;
+        int b = rand() % 255;
+
+        int StartPointx = rand() % width;
+        int StartPointY = rand() % height;
+        int EndPointX = rand() % width;
+        int EndPointY = rand() % height;
+        SDL_SetRenderDrawColor(renderer, r, g, b, SDL_ALPHA_OPAQUE);
+        SDL_RenderDrawLine(renderer, StartPointx, StartPointY, EndPointX, EndPointY);
+        SDL_RenderPresent(renderer);
+        SDL_Delay(10);
+    }
 
     //Tell SDL we have finished drawing, SDL will actually show our changes:
-    SDL_RenderPresent(renderer);
+    //SDL_RenderPresent(renderer);
 
     SDL_Delay(4000);
 
     return 0;
 }
-
