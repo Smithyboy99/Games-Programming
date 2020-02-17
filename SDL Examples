@@ -1,4 +1,4 @@
-// ConsoleApplication1.cpp : This file contains the 'main' function. Program execution begins and ends there.
+/// ConsoleApplication1.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
@@ -11,82 +11,197 @@ int main(int argc, char* argv[])
 {
 
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-        return 1;
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+		return 1;
 
-    SDL_DisplayMode dm;
-    SDL_GetDesktopDisplayMode(0, &dm);
-    int screen_width = dm.w;
-    int screen_height = dm.h;
+	SDL_DisplayMode dm;
+	SDL_GetDesktopDisplayMode(0, &dm);
+	int screen_width = dm.w;
+	int screen_height = dm.h;
 
-    Uint32 flags = SDL_WINDOW_MAXIMIZED | SDL_WINDOW_MINIMIZED;
+	Uint32 flags = SDL_WINDOW_MAXIMIZED | SDL_WINDOW_MINIMIZED;
 
-    SDL_Window* window = SDL_CreateWindow("Samuel Smith, 16631340", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_MAXIMIZED);
+	SDL_Window* window = SDL_CreateWindow("Samuel Smith, 16631340", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_MAXIMIZED);
 
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    SDL_SetRenderDrawColor(renderer, 100, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, 100, 0, 0, 255);
 
-    //Clear everything on the window -- paint over with last known colour
-    SDL_RenderClear(renderer);
+	//Clear everything on the window -- paint over with last known colour
+	SDL_RenderClear(renderer);
 
-    int width;
-    int height;
-    SDL_GetWindowSize(window, &width, &height);
+	int width;
+	int height;
+	SDL_GetWindowSize(window, &width, &height);
 
-    int x, y;
-    x = ((width / 2));
-    y = ((height / 2));
-    
-    //Rectangle
-   /* SDL_Rect r;
-    r.x = x -50;
-    r.y = y -50;
-    r.w = 100;
-    r.h = 100;
+	int x, y;
+	x = ((width / 2) - 150);
+	y = ((height / 2)-150);
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-    SDL_RenderDrawRect(renderer, &r);*/
+	//Rectangle
+    /*SDL_Rect r;
+	r.x = x -50;
+	r.y = y -50;
+	r.w = 100;
+	r.h = 100;
 
-     //triangle stuff
-    /*SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-    SDL_RenderDrawLine(renderer, x-50, y +50, x+50, y-50);
-    SDL_RenderDrawLine(renderer, x-50, y+50, x, y + 50);
-    SDL_RenderDrawLine(renderer, x+50, y-50, x, y + 50);*/
-    
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+	SDL_RenderDrawRect(renderer, &r);*/
+	/*
+	for (int i = 0; i < 3; i++)
+	{
+		int d = rand() % 255;
+		int g = rand() % 255;
+		int b = rand() % 255;
 
-   
+		SDL_Rect r;
+		r.x = x;
+		r.y = y;
+		r.w = 100;
+		r.h = 100;
 
-    //SDL_RenderClear(renderer);
+		x = x + 100;
+		printf("Number of squares: %i \n", x);
+		SDL_SetRenderDrawColor(renderer, d, g, b, 255);
+		SDL_RenderDrawRect(renderer, &r);
+		SDL_RenderPresent(renderer);
+		SDL_Delay(1000);
 
-    //draw line from one corner to other
-   // SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
-   // SDL_RenderDrawLine(renderer, 0, 0, width, height);
-    srand(time(NULL));
+		if (i == 3)
+		{
+			x = ((width / 2) - 150);
+			y = ((height / 2) - 150);
+		}
+	}
+	
 
-    int num = rand() % 1000;
-    printf("Number of lines: %i \n", num);
+	for (int v = 0; v < 3; v++)
+	{
+		int d = rand() % 255;
+		int g = rand() % 255;
+		int b = rand() % 255;
 
-    for (int i = 0; i < num; i++)
-    {
-        int r = rand() % 255;
-        int g = rand() % 255;
-        int b = rand() % 255;
+		
 
-        int StartPointx = rand() % width;
-        int StartPointY = rand() % height;
-        int EndPointX = rand() % width;
-        int EndPointY = rand() % height;
-        SDL_SetRenderDrawColor(renderer, r, g, b, SDL_ALPHA_OPAQUE);
-        SDL_RenderDrawLine(renderer, StartPointx, StartPointY, EndPointX, EndPointY);
-        SDL_RenderPresent(renderer);
-        SDL_Delay(10);
-    }
+		SDL_Rect r;
+		r.x = x - 300;
+		r.y = y + 100;
+		r.w = 100;
+		r.h = 100;
 
-    //Tell SDL we have finished drawing, SDL will actually show our changes:
-    //SDL_RenderPresent(renderer);
+		x = x + 100;
+		printf("Number of squares: %i \n", x);
+		SDL_SetRenderDrawColor(renderer, d, g, b, 255);
+		SDL_RenderDrawRect(renderer, &r);
+		SDL_RenderPresent(renderer);
+		SDL_Delay(1000);
+	}
+	for (int f = 0; f < 3; f++)
+	{
+		int d = rand() % 255;
+		int g = rand() % 255;
+		int b = rand() % 255;
 
-    SDL_Delay(4000);
 
-    return 0;
+
+		SDL_Rect r;
+		r.x = x - 600;
+		r.y = y + 200;
+		r.w = 100;
+		r.h = 100;
+
+		x = x + 100;
+		printf("Number of squares: %i \n", x);
+		SDL_SetRenderDrawColor(renderer, d, g, b, 255);
+		SDL_RenderDrawRect(renderer, &r);
+		SDL_RenderPresent(renderer);
+		SDL_Delay(1000);
+	}*/
+
+	//triangle stuff
+   /*SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+   SDL_RenderDrawLine(renderer, x-50, y +50, x+50, y-50);
+   SDL_RenderDrawLine(renderer, x-50, y+50, x, y + 50);
+   SDL_RenderDrawLine(renderer, x+50, y-50, x, y + 50);*/
+	// big colourful triangle
+	/*int w =0;
+	int o =0;
+
+	int bx = 0;
+	int by = 0;
+
+	for (int i = 0; i < x ; i++)
+	{
+		int r = rand() % 255;
+		int g = rand() % 255;
+		int b = rand() % 255;
+
+		int StartPointx = w;
+		int StartPointY = o;
+		int EndPointX = bx;
+		int EndPointY = by;
+		w++;
+		
+		bx++;
+		by++;
+		SDL_SetRenderDrawColor(renderer, r, g, b, SDL_ALPHA_OPAQUE);
+		SDL_RenderDrawLine(renderer, StartPointx, StartPointY, EndPointX, EndPointY);
+		SDL_RenderPresent(renderer);
+		SDL_Delay(10);
+	}
+	for (int z = 0; z < width; z++)
+	{
+		int r = rand() % 255;
+		int g = rand() % 255;
+		int b = rand() % 255;
+
+		int StartPointx = w;
+		int StartPointY = o;
+		int EndPointX = bx;
+		int EndPointY = by;
+		w++;
+
+		bx++;
+		by--;
+		SDL_SetRenderDrawColor(renderer, r, g, b, SDL_ALPHA_OPAQUE);
+		SDL_RenderDrawLine(renderer, StartPointx, StartPointY, EndPointX, EndPointY);
+		SDL_RenderPresent(renderer);
+		SDL_Delay(10);
+	}*/
+
+   //SDL_RenderClear(renderer);
+
+   //draw line from one corner to other
+  // SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+  // SDL_RenderDrawLine(renderer, 0, 0, width, height);
+
+	//Line stuff
+
+	/*srand(time(NULL));
+
+	int num = rand() % 1000;
+	printf("Number of lines: %i \n", num);
+	//random number and colour lines
+	for (int i = 0; i < num; i++)
+	{
+		int r = rand() % 255;
+		int g = rand() % 255;
+		int b = rand() % 255;
+
+		int StartPointx = rand() % width;
+		int StartPointY = rand() % height;
+		int EndPointX = rand() % width;
+		int EndPointY = rand() % height;
+		SDL_SetRenderDrawColor(renderer, r, g, b, SDL_ALPHA_OPAQUE);
+		SDL_RenderDrawLine(renderer, StartPointx, StartPointY, EndPointX, EndPointY);
+		SDL_RenderPresent(renderer);
+		SDL_Delay(10);
+	}*/
+
+	//Tell SDL we have finished drawing, SDL will actually show our changes:
+	//SDL_RenderPresent(renderer);
+
+	SDL_Delay(4000);
+
+	return 0;
 }
